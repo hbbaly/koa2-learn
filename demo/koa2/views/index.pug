@@ -1,0 +1,8 @@
+extends ./common/layout
+
+block content
+  - var list = hotList ||[{title:'hbb'}]
+  h1= title
+  p Welcome to #{title}
+  for item in list
+    p #{item.id}

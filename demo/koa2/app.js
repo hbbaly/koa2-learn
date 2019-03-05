@@ -5,7 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const example = require('./middleware/example.js')
+
 const index = require('./routes/index')
 const users = require('./routes/users')
 
@@ -13,7 +13,6 @@ const users = require('./routes/users')
 onerror(app)
 
 // middlewares
-app.use(example())
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
@@ -39,7 +38,6 @@ app.use(users.routes(), users.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
-  global.console.log('hbb')
   console.error('server error', err, ctx)
 });
 
