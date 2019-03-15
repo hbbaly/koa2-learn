@@ -3,6 +3,7 @@ var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var miniCss = require('gulp-clean-css')
+var miniImg = require('gulp-imagemin')
   // 压缩
   gulp.task('script',function(){
     gulp.src('public/js/*.js')
@@ -19,8 +20,14 @@ var miniCss = require('gulp-clean-css')
     .pipe(gulp.dest('output/css'))
     console.log('css文件打包完成');
   })
+  // 压缩图片
+  gulp.task('img',function(){
+    gulp.src('public/images/*')
+    .pipe(miniImg())
+    .pipe(gulp.dest('output/images'))
+  })
   // 监控public，routes，views下的文件改动
   gulp.task('auto',function(){
-    gulp.watch(['public/**/*'],['script','css'])
+    gulp.watch(['public/**/*'],['script','css','img'])
   })
-  gulp.task('default', ['script','css', 'auto'])
+  gulp.task('default', ['script','css','img', 'auto'])
