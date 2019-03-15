@@ -4,6 +4,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var miniCss = require('gulp-clean-css')
 var miniImg = require('gulp-imagemin')
+var miniLess = require('gulp-less')
   // 压缩
   gulp.task('script',function(){
     gulp.src('public/js/*.js')
@@ -14,11 +15,11 @@ var miniImg = require('gulp-imagemin')
   })
   // css压缩
   gulp.task('css',function(){
-    gulp.src('public/css/*.css')
+    gulp.src('public/css/*.less')
+    .pipe(miniLess())
     .pipe(miniCss())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('output/css'))
-    console.log('css文件打包完成');
   })
   // 压缩图片
   gulp.task('img',function(){
