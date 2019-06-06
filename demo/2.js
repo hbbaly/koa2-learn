@@ -23,4 +23,10 @@ db.once('open', function() {
     if (err) return console.error(err);
     fluffy.speak();
   });
+  // model 里的所有数据
+
+  Kitten.find(function (err, kittens) {
+    if (err) return console.error(err);
+    console.log(kittens);
+  })
 });
