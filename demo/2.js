@@ -16,5 +16,11 @@ db.once('open', function() {
   // methods 必须在model前面
   var Kitten = mongoose.model('Kitten', kittySchema);
   var felyne = new Kitten({ name: 'Felyne' });
-  console.log(felyne.name); // 'Felyne'
+  // console.log(felyne.name); // 'Felyne'
+  // console.log(felyne.speak())  //Meow name is Felyne
+  // 保存到数据库
+  felyne.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    fluffy.speak();
+  });
 });
