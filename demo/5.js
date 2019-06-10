@@ -35,4 +35,27 @@ db.once('open', function() {
     console.log(count, 'count')
     db.close()
   })
+  // Using query builder
+  Test.find({ title: /hbb/ }).
+  where('by').equals('hbb').
+  limit(10).
+  sort('-url').
+  select('title url by').
+  exec(function(err, ll){
+    if (err) console.error(err)
+    console.log(ll, 'll')
+  });
+  // With a JSON doc
+  Test.find({
+    title: /hbb/,
+    url: 'hbbaly.com'
+  }).
+  limit(10).
+  sort({ url: -1 }).
+  select({ title: 1, url: 1 ,description: 1}).
+  exec(function(err, lll){
+    if (err) console.error(err)
+    console.log(lll, 'lll')
+  });
+
 });
